@@ -5,6 +5,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -18,17 +20,44 @@ const Body = () => {
     console.log(json);
     setListOfRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
+        ?.restaurants,
     );
+
+    setFilteredRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+    
   };
 
-  if (listOfRestaurant.length === 0){
-    return <Shimmer/>
+  if (listOfRestaurant.length === 0) {
+    return <Shimmer />;
   }
 
   return (
     <div className="body">
-      <div className="search">Search</div>
+      <div className="search">
+
+        <input
+          type="text"
+          placeholder="Search Restaurants..................."
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+          }}
+        />
+
+        <button
+          onClick={() => {
+            const filteredList = listOfRestaurant.filter((res) =>
+              res.info.name.toLowerCase().includes(searchText.toLowerCase()),
+            );
+            setFilteredRestaurants(filteredList)
+          }}
+        >
+          Search
+        </button>
+      </div>
 
       <div className="filter">
         <button
@@ -37,7 +66,7 @@ const Body = () => {
             const filteredList = listOfRestaurant.filter(
               (res) => res.info.avgRating > 4,
             );
-            setListOfRestaurant(filteredList);
+            setFilteredRestaurants(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -45,7 +74,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => {
+        {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard key={restaurant.info.id} resData={restaurant} />
           );
