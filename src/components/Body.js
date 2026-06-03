@@ -27,7 +27,6 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     );
-    
   };
 
   if (listOfRestaurant.length === 0) {
@@ -37,7 +36,6 @@ const Body = () => {
   return (
     <div className="body">
       <div className="search">
-
         <input
           type="text"
           placeholder="Search Restaurants..................."
@@ -52,7 +50,7 @@ const Body = () => {
             const filteredList = listOfRestaurant.filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase()),
             );
-            setFilteredRestaurants(filteredList)
+            setFilteredRestaurants(filteredList);
           }}
         >
           Search
