@@ -18,7 +18,12 @@ const RestaurantMenu = () => {
     setResMenu(json.data);
   };
 
-  const { name } = resMenu?.cards[2]?.card?.card?.info || {};
+  const { name, cuisines, costForTwoMessage } =
+    resMenu?.cards[2]?.card?.card?.info || {};
+
+  const { itemCards } =
+    resMenu?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      ?.card || {};
 
   if (!resMenu) {
     return <div>Loading...</div>;
@@ -27,6 +32,19 @@ const RestaurantMenu = () => {
   return (
     <div>
       <h1>{name}</h1>
+      <h2>{cuisines}</h2>
+      <h3>{costForTwoMessage}</h3>
+      <h2>MENU : </h2>
+
+      {/* <h1>{itemCards[0].card.info.name}</h1>
+      <h1>{itemCards[1].card.info.name}</h1>
+      <h1>{itemCards[2].card.info.name}</h1> */}
+
+      <ul>
+        {itemCards?.map((item) => (
+          <li key={item.card.info.id}>{item.card.info.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
