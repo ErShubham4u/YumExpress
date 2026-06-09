@@ -2,7 +2,7 @@
 node_modules/
 
 # Build Output
-dist/
+
 
 # Parcel Cache
 .parcel-cache/
