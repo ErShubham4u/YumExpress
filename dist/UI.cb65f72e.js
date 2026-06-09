@@ -29298,22 +29298,46 @@ const Body = ()=>{
     (0, _react.useEffect)(()=>{
         fetchData();
     }, []);
+    // const fetchData = async () => {
+    //   // const data = await fetch(
+    //   //   "https://www.swiggy.com/mapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+    //   // );
+    //   // const data = await fetch(
+    //   //   "https://foodfire.onrender.com/api/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+    //   // );
+    //   // const data = await fetch(
+    //   //   "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING",
+    //   // );
+    //   const data = await fetch("/api/restaurants");
+    //   console.log(data.text())
+    //   const json = await data.json();
+    //   console.log(data.json)
+    //   setListOfRestaurant(
+    //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+    //       ?.restaurants || [],
+    //   );
+    //   setFilteredRestaurants(
+    //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+    //       ?.restaurants || [],
+    //   );
+    //   console.log(data);
+    // };
     const fetchData = async ()=>{
-        // const data = await fetch(
-        //   "https://www.swiggy.com/mapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-        // );
-        const data = await fetch("https://foodfire.onrender.com/api/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        // const data = await fetch(
-        //   "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING",
-        // );
-        const json = await data.json();
-        setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
-        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
-        console.log(data);
+        try {
+            const response = await fetch("/api/restaurants");
+            console.log("Response:", response);
+            const json = await response.json();
+            console.log("JSON:", json);
+            const restaurants = json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+            setListOfRestaurant(restaurants);
+            setFilteredRestaurants(restaurants);
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     };
     if (listOfRestaurant.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 43,
+        lineNumber: 68,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29331,7 +29355,7 @@ const Body = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 49,
+                        lineNumber: 74,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -29342,13 +29366,13 @@ const Body = ()=>{
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 58,
+                        lineNumber: 83,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 48,
+                lineNumber: 73,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29362,12 +29386,12 @@ const Body = ()=>{
                     children: "Top Rated Restaurants"
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 71,
+                    lineNumber: 96,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 70,
+                lineNumber: 95,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29380,24 +29404,24 @@ const Body = ()=>{
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 92,
+                            lineNumber: 117,
                             columnNumber: 15
                         }, undefined)
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 88,
+                        lineNumber: 113,
                         columnNumber: 13
                     }, undefined));
                 })
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 84,
+                lineNumber: 109,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 47,
+        lineNumber: 72,
         columnNumber: 5
     }, undefined);
 };

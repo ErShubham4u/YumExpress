@@ -13,31 +13,56 @@ const Body = () => {
     fetchData();
   }, []);
 
+  // const fetchData = async () => {
+  //   // const data = await fetch(
+  //   //   "https://www.swiggy.com/mapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+  //   // );
+
+  //   // const data = await fetch(
+  //   //   "https://foodfire.onrender.com/api/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
+  //   // );
+
+  //   // const data = await fetch(
+  //   //   "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING",
+  //   // );
+
+  //   const data = await fetch("/api/restaurants");
+  //   console.log(data.text())
+  //   const json = await data.json();
+  //   console.log(data.json)
+  //   setListOfRestaurant(
+  //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+  //       ?.restaurants || [],
+  //   );
+
+  //   setFilteredRestaurants(
+  //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+  //       ?.restaurants || [],
+  //   );
+
+  //   console.log(data);
+  // };
+
   const fetchData = async () => {
-    // const data = await fetch(
-    //   "https://www.swiggy.com/mapi/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-    // );
+  try {
+    const response = await fetch("/api/restaurants");
 
-    const data = await fetch(
-      "https://foodfire.onrender.com/api/restaurants/list/v5?lat=18.52110&lng=73.85020&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-    );
+    console.log("Response:", response);
 
-    // const data = await fetch(
-    //   "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING",
-    // );
-    const json = await data.json();
-    setListOfRestaurant(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || [],
-    );
+    const json = await response.json();
 
-    setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || [],
-    );
+    console.log("JSON:", json);
 
-    console.log(data);
-  };
+    const restaurants =
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [];
+
+    setListOfRestaurant(restaurants);
+    setFilteredRestaurants(restaurants);
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
 
   if (listOfRestaurant.length === 0) {
     return <Shimmer />;
