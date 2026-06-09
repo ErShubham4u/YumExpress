@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(  "https://corsproxy.io/?url=" +
+    const data = await fetch(  
       "https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5288974&lng=73.8665321&restaurantId=" + id,
     );
     const json = await data.json();
