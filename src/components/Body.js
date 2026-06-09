@@ -20,12 +20,12 @@ const Body = () => {
     const json = await data.json();
     setListOfRestaurant(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
+        ?.restaurants || []
     );
 
     setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
+        ?.restaurants || []
     );
   };
 

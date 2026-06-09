@@ -19,11 +19,11 @@ const RestaurantMenu = () => {
   };
 
   const { name, cuisines, costForTwoMessage } =
-    resMenu?.cards[2]?.card?.card?.info || {};
+    resMenu?.cards[2]?.card?.card?.info || [];
 
   const { itemCards } =
     resMenu?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-      ?.card || {};
+      ?.card || [];
 
   if (!resMenu) {
     return <div>Loading...</div>;
