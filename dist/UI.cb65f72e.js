@@ -29328,16 +29328,20 @@ const Body = ()=>{
             console.log("Response:", response);
             const json = await response.json();
             console.log("JSON:", json);
-            const restaurants = json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
-            setListOfRestaurant(restaurants);
-            setFilteredRestaurants(restaurants);
+            // const restaurants =
+            //   json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+            //     ?.restaurants || [];
+            // setListOfRestaurant(restaurants);
+            // setFilteredRestaurants(restaurants);
+            setListOfRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
+            setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []);
         } catch (error) {
             console.error("Fetch error:", error);
         }
     };
     if (listOfRestaurant.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _shimmerDefault.default), {}, void 0, false, {
         fileName: "src/components/Body.js",
-        lineNumber: 68,
+        lineNumber: 78,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29355,7 +29359,7 @@ const Body = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 74,
+                        lineNumber: 84,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -29366,13 +29370,13 @@ const Body = ()=>{
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 83,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Body.js",
-                lineNumber: 73,
+                lineNumber: 83,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29386,12 +29390,12 @@ const Body = ()=>{
                     children: "Top Rated Restaurants"
                 }, void 0, false, {
                     fileName: "src/components/Body.js",
-                    lineNumber: 96,
+                    lineNumber: 106,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 95,
+                lineNumber: 105,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -29404,24 +29408,24 @@ const Body = ()=>{
                             resData: restaurant
                         }, void 0, false, {
                             fileName: "src/components/Body.js",
-                            lineNumber: 117,
+                            lineNumber: 127,
                             columnNumber: 15
                         }, undefined)
                     }, restaurant.info.id, false, {
                         fileName: "src/components/Body.js",
-                        lineNumber: 113,
+                        lineNumber: 123,
                         columnNumber: 13
                     }, undefined));
                 })
             }, void 0, false, {
                 fileName: "src/components/Body.js",
-                lineNumber: 109,
+                lineNumber: 119,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Body.js",
-        lineNumber: 72,
+        lineNumber: 82,
         columnNumber: 5
     }, undefined);
 };

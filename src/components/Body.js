@@ -53,12 +53,22 @@ const Body = () => {
 
     console.log("JSON:", json);
 
-    const restaurants =
-      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants || [];
+    // const restaurants =
+    //   json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+    //     ?.restaurants || [];
 
-    setListOfRestaurant(restaurants);
-    setFilteredRestaurants(restaurants);
+    // setListOfRestaurant(restaurants);
+    // setFilteredRestaurants(restaurants);
+
+       setListOfRestaurant(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [],
+    );
+
+    setFilteredRestaurants(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants || [],
+    );
   } catch (error) {
     console.error("Fetch error:", error);
   }
