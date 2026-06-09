@@ -16,6 +16,7 @@ const RestaurantMenu = () => {
     );
     const json = await data.json();
     setResMenu(json.data);
+    console.log(json)
   };
 
   const { name, cuisines, costForTwoMessage } =

@@ -27,6 +27,8 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants || []
     );
+
+    console.log(json)
   };
 
   if (listOfRestaurant.length === 0) {
